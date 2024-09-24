@@ -1,0 +1,51 @@
+.selectGroup {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0;
+    max-width: 1000px; /* Ajusta según necesites */
+    position: relative;
+}
+
+.selectGroup select {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 100%; /* Asegúrate de que use el ancho completo del contenedor */
+    appearance: none; /* Ocultar el estilo por defecto del select */
+    -moz-appearance: none; /* Para Firefox */
+    -webkit-appearance: none; /* Para Safari */
+    position: relative;
+}
+
+.selectGroup::after {
+    content: '▼'; /* Puedes cambiar este ícono según tus necesidades */
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+    pointer-events: none; /* Para que no interfiera con el click */
+    color: rgb(100, 100, 100);
+}
+
+/* Efecto de foco */
+.selectGroup select:focus {
+    border-color: rgb(150, 150, 200);
+}
+
+.selectGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0.5em;
+    top: 0.8em; /* Ajusta la posición vertical inicial */
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+}
+
+/* Opciones del select */
+.selectGroup select option {
+    padding: 0.8em; /* Espaciado de las opciones */
+}

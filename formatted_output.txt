@@ -1,0 +1,28 @@
+$CATEGORY: $system$/A 2024 - 02/Indice/Licenciatura en Educación Infantil/Semestre II Doncello/COMUNICACIÓN Y PRODUCCIÓN DE TEXTO AUTÓNOMO II/M1
+
+
+::240910M1C1-LEISII DoncelloCOMUNICACIÓNYPRODUCCIÓNDETEXTOAUTÓNOMOII::
+[html]<p>ssssssss\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Licenciatura en Educación Infantil/Semestre II Doncello/COMUNICACIÓN Y PRODUCCIÓN DE TEXTO AUTÓNOMO II/M1
+
+
+::240910M1C2-LEISII DoncelloCOMUNICACIÓNYPRODUCCIÓNDETEXTOAUTÓNOMOII::
+[html]<p>qqqqqqqqqqqqq\:</p>{
+=<p>esta si</p>
+~<p>qqqq</p>
+~<p>qqqqq</p>
+~<p>qqqqqqq</p>
+####<p>Afirmación\:qqqqq
+<p>Justificación\:qqqqq</p>
+<p>Evidencia\:qqqqqq</p>}
+
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Licenciatura en Educación Infantil/Semestre II Doncello/ELECTIVA I/M1
+
+
+::240910M1C1-LEISII DoncelloELECTIVAI::
+[html]<p>qqqqqqqqqqqqqqq\:</p>{
+}
+

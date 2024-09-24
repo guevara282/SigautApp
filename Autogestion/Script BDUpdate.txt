@@ -1,0 +1,19 @@
+-- Primero debes abrir Sigaut BD y actualizar el periodo sólo uno debe estar en 1, el nuevo
+-- Los demás van en 0
+
+SELECT c.fullname as UnidadTematica, a.name as Semestre, b.name as Programa
+FROM (moodledistancia.mdl_course_categories as a 
+INNER JOIN moodledistancia.mdl_course_categories as b on a.parent = b.id ) 
+INNER JOIN moodledistancia.mdl_course as c on a.id = c.category 
+WHERE b.name not like '%Continuada%' and b.name not like '%Bienestar%' and a.name not like '%Micro%'
+ORDER BY b.name, a.name
+
+--2019-2 ADDON ABOUT NEW NAME COURSES
+
+SELECT c.fullname as UnidadTematica, a.name as Semestre, b.name as Programa
+FROM (moodledistancia.mdl_course_categories as a 
+INNER JOIN moodledistancia.mdl_course_categories as b on a.parent = b.id ) 
+INNER JOIN moodledistancia.mdl_course as c on a.id = c.category 
+WHERE b.name not like '%Continuada%' and b.name not like '%Bienestar%' 
+  and a.name not like '%Micro%'      and b.name not like "%Convenios%" and b.name not like "%Repositor%"
+ORDER BY b.name, a.name

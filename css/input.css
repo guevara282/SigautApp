@@ -1,0 +1,88 @@
+.inputGroup {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0;
+    max-width: 1000px; /* Ajusta según necesites */
+    position: relative;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 100%; /* Asegúrate de que use el ancho completo del contenedor */
+}
+
+.inputGroup textarea {
+    height: auto; /* Permitir que el tamaño del textarea se ajuste automáticamente */
+    min-height: 150px; /* Altura mínima para el textarea */
+    resize: vertical; /* Permitir que el usuario ajuste la altura */
+}
+
+.inputGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0.5em;
+    top: 0.8em; /* Ajusta la posición vertical inicial */
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+}
+
+.inputGroup :is(input:focus, input:valid, textarea:focus, textarea:valid) ~ label {
+    transform: translateY(-50%) scale(0.9);
+    margin: 0;
+    left: 0.5em;
+    top: -0.5em; /* Ajusta el movimiento hacia arriba */
+    padding: 0.4em;
+    background-color: #e8e8e8; /* Puede ajustar según tu diseño */
+}
+
+.inputGroup :is(input:focus, input:valid, textarea:focus, textarea:valid) {
+    border-color: rgb(150, 150, 200);
+}
+
+
+/* Estilo general del textarea */
+.inputGroup textarea {
+    height: auto; /* Permitir que el tamaño del textarea se ajuste automáticamente */
+    min-height: 150px; /* Altura mínima para el textarea */
+    resize: vertical; /* Permitir que el usuario ajuste la altura */
+    border-radius: 20px; /* Bordes redondeados para el textarea */
+    overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+}
+
+/* Personalización de la barra de desplazamiento */
+.inputGroup textarea::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.inputGroup textarea::-webkit-scrollbar-track {
+    background: rgba(240, 240, 240, 0.8); /* Fondo de la barra de desplazamiento */
+    border-radius: 10px; /* Bordes redondeados para el fondo */
+}
+
+.inputGroup textarea::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 200, 0.8); /* Color del "thumb" */
+    border-radius: 10px; /* Bordes redondeados para el "thumb" */
+}
+
+.inputGroup textarea::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 150, 200, 1); /* Color del "thumb" al pasar el mouse */
+}
+
+.inputGroup input.filled {
+    border-color: rgb(156, 156, 156); /* Color de borde cuando el campo está lleno */
+    background-color: rgba(244, 248, 244, 0); /* Color de fondo suave para indicar que está lleno */
+}
+
+.inputGroup input.filled + label {
+    transform: translate(-50%, -1.2em) scale(0.9); /* Asegúrate de que el label se mueva correctamente */
+    color: rgb(100, 100, 100); /* Cambia el color del label cuando el campo está lleno */
+    background-color: #e8e8e8; /* Color de fondo cuando el label está arriba */
+}
+
