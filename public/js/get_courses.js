@@ -9,7 +9,7 @@ function filterCourses() {
 
   // Crear la solicitud AJAX
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "./lib/get_courses.php", true);
+  xhr.open("POST", "./controllers/get_courses.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   // Enviar el ID del semestre
