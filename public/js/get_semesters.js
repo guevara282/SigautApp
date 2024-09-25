@@ -11,7 +11,7 @@ function filterSemesters() {
 
   // Crear la solicitud AJAX
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "./lib/get_semesters.php", true);
+  xhr.open("POST", "./controllers/get_semesters.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   // Enviar el ID del programa y el ID del usuario

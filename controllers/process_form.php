@@ -5,7 +5,7 @@ include '../BD/conexiondi.php';
 // Función para buscar el texto en la tabla 'categoria'
 function buscarCategoria($conn, $categorycompleto)
 {
-    $sql = "SELECT * FROM categoria WHERE indicecompleto LIKE ?";
+    $sql = "SELECT * FROM `di`.`sgcategoria` WHERE indicecompleto LIKE ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
@@ -31,7 +31,7 @@ function buscarCategoria($conn, $categorycompleto)
 // Función para buscar el texto en la tabla 'preguntas'
 function buscarPregunta($conn, $categoryid)
 {
-    $sql = "SELECT tipopregunta, COUNT(*) AS total FROM preguntas WHERE categoria = ? GROUP BY tipopregunta";
+    $sql = "SELECT tipopregunta, COUNT(*) AS total FROM sgpreguntas WHERE categoria = ? GROUP BY tipopregunta";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
