@@ -2,21 +2,6 @@
 require_once('../../lib/auth_roles.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SigautApp Web</title>
-   <link rel="stylesheet" href="./public/css/checbox.css">
-  <link rel="stylesheet" href="./public/css/input.css">
-  <link rel="stylesheet" href="./public/css/button.css">
-  <link rel="stylesheet" href="./public/css/select.css">
-
-
-</head>
-
 <body>
   <div class="container mt-1 form-container">
     <h1 class="inputGroup">
@@ -36,8 +21,6 @@ require_once('../../lib/auth_roles.php');
       </div>
       <!-- Campo oculto para almacenar el userID -->
       <input type="hidden" id="userid" name="userid" value="<?php echo $userid; ?>">
-
-
       <div class="selectGroup mb-3">
 
         <select id="program" name="program" required onchange="filterSemesters()">
@@ -194,18 +177,10 @@ require_once('../../lib/auth_roles.php');
           <span>Guardar</span>
         </button>
       </div>
-
-
-
     </form>
   </div>
-  <script src="./public/js/validator.js"></script>
-  <!-- Agregar Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./public/js/get_semesters.js"></script>
-  <script src="./public/js/get_courses.js"></script>
-  <script src="./public/js/alerts.js"></script>
-  <script src="./public/js/required.js"></script>
-</body>
-
+ </body>
+ <script src="./public/js/get_courses.js"></script>
+<script src="./public/js/required.js"></script>
+<script src="./public/js/validator.js"></script>
 </html>

@@ -72,16 +72,16 @@ function insertarCategoria($conn, $categoria, $programa, $semester, $course, $ca
         return false;
     }
 }
-function insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $id_categoria, $usuario, $typequestion)
+function insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $id_categoria, $usuario, $typequestion, $userid)
 {
-    $sql = "INSERT INTO `di`.`sgpreguntas` (`id_pregunta`, `enunciado`, `opcioncorrecta`, `opcionb`, `opcionc`, `opciond`, `afirmacion`, `justificacion`, `evidencia`, `preguntacompleta`,`categoria`,`usuario`,`tipopregunta`  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,?,?)";
+    $sql = "INSERT INTO `di`.`sgpreguntas` (`ID_PREGUNTAMOODLE`, `enunciado`, `opcioncorrecta`, `opcionb`, `opcionc`, `opciond`, `afirmacion`, `justificacion`, `evidencia`, `preguntacompleta`,`categoria`,`usuario`,`tipopregunta`,`usuarioid`  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,?,?,?)";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
         die("Error en la consulta SQL: " . $conn->error);
     }
 
-    $stmt->bind_param("sssssssssssss", $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $id_categoria, $usuario, $typequestion);
+    $stmt->bind_param("sssssssssssssi", $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $id_categoria, $usuario, $typequestion, $userid);
 
     if ($stmt->execute()) {
         $stmt->close();
@@ -116,8 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cursocorto = str_replace(' ', '', $course);
         $programacorto = "";
         $semestrecorto = 'S' . str_replace('Semestre ', '', $semester);;
-        $id_pregunta = "";
+        $ID_PREGUNTAMOODLE = "";
         $usuario = $_POST['user'];
+        $userid = $_POST['userid'];
         $typequestion =  $_POST['typequestion'];
     } catch (\Throwable $th) {
     }
@@ -204,12 +205,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     $id_base = '"FECHA"M1"TYPECUESTION""CANTPREGUNTAS"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"';
-    $id_pregunta = str_replace(
+    $ID_PREGUNTAMOODLE = str_replace(
         ['"FECHA"', '"TYPECUESTION"', '"CANTPREGUNTAS"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"'],
         [$fecha, $typequestion, $totalPreguntas, $programacorto, $semestrecorto, $cursocorto],
         $id_base
     );
-    // echo " idpregunta " . $id_pregunta;
+    // echo " idpregunta " . $ID_PREGUNTAMOODLE;
 
 
     if ($result && $result->num_rows > 0) {
@@ -219,13 +220,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($correctOption == null) {
                     
 
-                    insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion);
+                    insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion, $userid);
                     //echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
                     // echo "pregunta abierta";
                    
                 } else {
                   
-                    $resultpreguntas = insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion);
+                    $resultpreguntas = insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion, $userid);
                     //  echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
 
                 }
@@ -235,12 +236,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($correctOption == null) {
                    
 
-                    insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion);
+                    insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion, $userid);
                     //echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
                     // echo "pregunta abierta";
                 } else {
                    
-                    $resultpreguntas = insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion);
+                    $resultpreguntas = insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion, $userid);
                     //  echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
                 }
                 
@@ -269,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $cant_preguntasM++;
                }
                 $preguntacompleta = "";
-                insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion);
+                insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion, $userid);
                 //echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
                 // echo "pregunta abierta";
             } else {
@@ -278,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                    }else{
                     $cant_preguntasM++;
                    }
-                $resultpreguntas = insertarPregunta($conn, $id_pregunta, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion);
+                $resultpreguntas = insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion, $userid);
                 //  echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
             }
         }
