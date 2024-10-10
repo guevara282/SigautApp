@@ -1,28 +1,77 @@
-$CATEGORY: $system$/A 2024 - 02/Indice/Licenciatura en Educación Infantil/Semestre II Doncello/COMUNICACIÓN Y PRODUCCIÓN DE TEXTO AUTÓNOMO II/M1
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
 
 
-::240910M1C1-LEISII DoncelloCOMUNICACIÓNYPRODUCCIÓNDETEXTOAUTÓNOMOII::
-[html]<p>ssssssss\:</p>{
+::241008M1M-AFSICOMUNICACIÓN::
+[html]<p>nueva pregunta meta\:</p>{
 }
 
-$CATEGORY: $system$/A 2024 - 02/Indice/Licenciatura en Educación Infantil/Semestre II Doncello/COMUNICACIÓN Y PRODUCCIÓN DE TEXTO AUTÓNOMO II/M1
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
 
 
-::240910M1C2-LEISII DoncelloCOMUNICACIÓNYPRODUCCIÓNDETEXTOAUTÓNOMOII::
-[html]<p>qqqqqqqqqqqqq\:</p>{
-=<p>esta si</p>
-~<p>qqqq</p>
-~<p>qqqqq</p>
-~<p>qqqqqqq</p>
-####<p>Afirmación\:qqqqq
-<p>Justificación\:qqqqq</p>
-<p>Evidencia\:qqqqqq</p>}
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>cccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
 
 
-$CATEGORY: $system$/A 2024 - 02/Indice/Licenciatura en Educación Infantil/Semestre II Doncello/ELECTIVA I/M1
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>ccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
 
 
-::240910M1C1-LEISII DoncelloELECTIVAI::
-[html]<p>qqqqqqqqqqqqqqq\:</p>{
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>ccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
+
+
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>ccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
+
+
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>ccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
+
+
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>ccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
+
+
+::241009M1M-AFSICOMUNICACIÓN::
+[html]<p>esta es la que cambio\:</p>{
+=<p>esta es la correcta</p>
+~<p>esta no es</p>
+~<p>esta es la 3 opcion</p>
+~<p>esta es la 4 opcion</p>
+####<p>Afirmación\:afirmo
+<p>Justificación\:justifico</p>
+<p>Evidencia\:evidencio</p>}
+
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
+
+
+::241009M1M-AFSICOMUNICACIÓN::
+[html]<p>ccc\:</p>{
+}
+
+$CATEGORY: $system$/A 2024 - 02/Indice/Adminitracion Financiera/Semestre I/COMUNICACIÓN/M1
+
+
+::241009M1C-AFSICOMUNICACIÓN::
+[html]<p>cccc\:</p>{
 }
 

@@ -36,6 +36,7 @@ require_once './lib/auth_roles.php';
         <section id="banner">
           <div class="content" id="dynamicContent">
             <!-- Aquí se cargará el contenido dinámico -->
+             
           </div>
         </section>
       </div>

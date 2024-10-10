@@ -96,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verificar si el usuario de Moodle está presente
 
     try {
+        $add=false;
         // Separar el programa y el código usando explode
         list($programa, $codigoprograma) = explode(',', $_POST['program']);
         list($semester, $codigosemestre) = explode(',', $_POST['semester']);
@@ -183,31 +184,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-    $preguntabase = '::"FECHA"M1"TYPECUESTION""CANTPREGUNTAS"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"::;[html]<p>"QUESTION"\:</p>{;=<p>"CORRECTOPTION"</p>;~<p>"OPTION2"</p>;~<p>"OPTION3"</p>;~<p>"OPTION4"</p>;####<p>Afirmación\:"AFFIRMATION";<p>Justificación\:"JUSTIFICATION"</p>;<p>Evidencia\:"EVIDENCE"</p>};';
+    $preguntabase = '::"FECHA"M1"TYPECUESTION"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"::;[html]<p>"QUESTION"\:</p>{;=<p>"CORRECTOPTION"</p>;~<p>"OPTION2"</p>;~<p>"OPTION3"</p>;~<p>"OPTION4"</p>;####<p>Afirmación\:"AFFIRMATION";<p>Justificación\:"JUSTIFICATION"</p>;<p>Evidencia\:"EVIDENCE"</p>};';
 
     // Reemplazar los placeholders con los valores ingresados
     $preguntacompleta = str_replace(
-        ['"FECHA"', '"TYPECUESTION"', '"CANTPREGUNTAS"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"', '"QUESTION"', '"CORRECTOPTION"', '"OPTION2"', '"OPTION3"', '"OPTION4"', '"AFFIRMATION"', '"JUSTIFICATION"', '"EVIDENCE"'],
-        [$fecha, $typequestion, $totalPreguntas, $programacorto, $semestrecorto, $cursocorto, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence],
+        ['"FECHA"', '"TYPECUESTION"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"', '"QUESTION"', '"CORRECTOPTION"', '"OPTION2"', '"OPTION3"', '"OPTION4"', '"AFFIRMATION"', '"JUSTIFICATION"', '"EVIDENCE"'],
+        [$fecha, $typequestion, $programacorto, $semestrecorto, $cursocorto, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence],
         $preguntabase
     );
 
-    $preguntaabiertabase = '::"FECHA"M1"TYPECUESTION""CANTPREGUNTAS"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"::;[html]<p>"QUESTION"\:</p>{;};';
+    $preguntaabiertabase = '::"FECHA"M1"TYPECUESTION"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"::;[html]<p>"QUESTION"\:</p>{;};';
 
     // Reemplazar los placeholders con los valores ingresados
     $preguntaabierta = str_replace(
-        ['"FECHA"', '"TYPECUESTION"', '"CANTPREGUNTAS"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"', '"QUESTION"'],
-        [$fecha, $typequestion, $totalPreguntas, $programacorto, $semestrecorto, $cursocorto, $question],
+        ['"FECHA"', '"TYPECUESTION"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"', '"QUESTION"'],
+        [$fecha, $typequestion, $programacorto, $semestrecorto, $cursocorto, $question],
         $preguntaabiertabase
     );
 
 
 
 
-    $id_base = '"FECHA"M1"TYPECUESTION""CANTPREGUNTAS"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"';
+    $id_base = '"FECHA"M1"TYPECUESTION"-"PROGRAMACORTO""SEMESTRECORTO""CURSOCORTO"';
     $ID_PREGUNTAMOODLE = str_replace(
-        ['"FECHA"', '"TYPECUESTION"', '"CANTPREGUNTAS"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"'],
-        [$fecha, $typequestion, $totalPreguntas, $programacorto, $semestrecorto, $cursocorto],
+        ['"FECHA"', '"TYPECUESTION"', '"PROGRAMACORTO"', '"SEMESTRECORTO"', '"CURSOCORTO"'],
+        [$fecha, $typequestion, $programacorto, $semestrecorto, $cursocorto],
         $id_base
     );
     // echo " idpregunta " . $ID_PREGUNTAMOODLE;
@@ -231,6 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 }
                $cant_preguntasC++;
+               $add=true;
                
             } elseif ($typequestion == "M" && $cant_preguntasM < 2) {
                 if ($correctOption == null) {
@@ -246,10 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 
                $cant_preguntasM++;
-            }elseif($cant_preguntasC>=8){
-             $cant_preguntasC=100;
-            }elseif($cant_preguntasM>=2){
-                $cant_preguntasM=100;
+               $add=true;
             }
             
         } else {
@@ -273,6 +272,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntaabierta, $row['ID'], $usuario, $typequestion, $userid);
                 //echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
                 // echo "pregunta abierta";
+                $add=true;
             } else {
                 if($typequestion == "C"){
                     $cant_preguntasC++;
@@ -281,6 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                    }
                 $resultpreguntas = insertarPregunta($conn, $ID_PREGUNTAMOODLE, $question, $correctOption, $option2, $option3, $option4, $affirmation, $justification, $evidence, $preguntacompleta, $row['ID'], $usuario, $typequestion, $userid);
                 //  echo "Texto encontrado, te quedan " . $cant_preguntas . " preguntas ";
+                $add=true;
             }
         }
     }
@@ -288,10 +289,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
     //echo " preguntas :". $cant_preguntasC.'mmmmm'.$cant_preguntasM;
  
-   echo "<script>
+   /*echo "<script>
               localStorage.setItem('preguntas_restantesC', $cant_preguntasC);
               localStorage.setItem('preguntas_restantesM', $cant_preguntasM);
               window.location.href = '../index.php';
            </script>";
-    exit();
+    exit();*/
+        // Responder con JSON
+        if($add==true){
+            echo json_encode([
+                'success' => true,
+                'message' => 'Pregunta agregada con éxito',
+                'preguntas_restantesC' => $cant_preguntasC,
+                'preguntas_restantesM' => $cant_preguntasM
+            ]);
+            exit();
+        }else{
+            echo json_encode([
+                'success' => false,
+                'message' => 'Pregunta agregada con éxito',
+                'preguntas_restantesC' => $cant_preguntasC,
+                'preguntas_restantesM' => $cant_preguntasM
+            ]);
+            exit();
+        }
+       
+    
 }

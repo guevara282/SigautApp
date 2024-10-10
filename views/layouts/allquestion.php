@@ -188,6 +188,8 @@ require_once('../../lib/auth_roles.php');
                             autocomplete="off"></textarea>
                         <label for="evidence">Evidencia</label>
                     </div>
+                    <input type="hidden" id="questionId" name="questionId">
+
                 </div>
 
                 <button type="submit">Guardar</button>
@@ -207,7 +209,7 @@ require_once('../../lib/auth_roles.php');
         });
 
         function showEditModal(questionId) {
-            console.log(questionId);
+            console.log(questionId + "id en show modal");
             // Hacer una llamada AJAX para obtener los datos de la pregunta
             $.ajax({
 
@@ -218,9 +220,10 @@ require_once('../../lib/auth_roles.php');
                 },
                 dataType: 'json',
                 success: function(question) {
-                    console.log(question);
+                    console.log(question + "question");
                     if (question) {
                         // Establecer los valores de los campos del modal
+                        //document.getElementById("typequestion").value= question.TIPOPREGUNTA;
                         document.getElementById("question").value = question.ENUNCIADO; // Asumiendo que tienes el enunciado
                         document.getElementById("correctOption").value = question.OPCIONCORRECTA; // Ajusta según tu columna
                         document.getElementById("option2").value = question.OPCIONB; // Ajusta según tu columna
@@ -229,7 +232,16 @@ require_once('../../lib/auth_roles.php');
                         document.getElementById("affirmation").value = question.AFIRMACION; // Ajusta según tu columna
                         document.getElementById("justification").value = question.JUSTIFICACION; // Ajusta según tu columna
                         document.getElementById("evidence").value = question.EVIDENCIA; // Ajusta según tu columna
+                        document.getElementById("questionId").value = questionId;
+                        // Cargar el tipo de pregunta (Cognitiva o Metacognitiva)
+                        if (question.TIPOPREGUNTA === "C") {
+                            document.getElementById("cognitive").checked = true;
+                        } else if (question.TIPOPREGUNTA === "M") {
+                            document.getElementById("metacognitive").checked = true;
+                        }
 
+                        // Cargar el tipo de curso (Seleccion múltiple o Pregunta Abierta)
+                        document.getElementById("courseType").value = question.COURSETYPE;
                         // Mostrar el modal
                         var modal = document.getElementById("editModal");
                         modal.style.display = "block";
@@ -272,6 +284,52 @@ require_once('../../lib/auth_roles.php');
             // Cerrar el modal después de guardar
             var modal = document.getElementById("editModal");
             modal.style.display = "none";
+        };
+    </script>
+    <script>
+        // Manejar la presentación del formulario
+        document.getElementById("editQuestionForm").onsubmit = function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario por defecto
+
+            // Recopilar los datos del formulario
+            var formData = {
+
+                courseType: document.getElementById("courseType").value,
+                typequestion: document.querySelector('input[name="typequestion"]:checked').value,
+                question: document.getElementById("question").value,
+                correctOption: document.getElementById("correctOption").value,
+                option2: document.getElementById("option2").value,
+                option3: document.getElementById("option3").value,
+                option4: document.getElementById("option4").value,
+                affirmation: document.getElementById("affirmation").value,
+                justification: document.getElementById("justification").value,
+                evidence: document.getElementById("evidence").value,
+                questionId: document.getElementById("questionId").value // Asegúrate de tener una variable questionId que ya esté definida
+            };
+
+            console.log(document.getElementById("questionId").value + " questionId");
+            // Enviar los datos a tu controlador mediante AJAX
+            $.ajax({
+                url: 'http://172.16.20.165/dist/SigautApp/controllers/update_question.php', // URL del controlador PHP
+                type: 'POST', // Usamos POST para enviar los datos
+                data: formData, // Los datos recopilados del formulario
+                dataType: 'json', // Formato esperado de la respuesta
+                success: function(response) {
+                    if (response.success) {
+                        alert("Pregunta actualizada correctamente.");
+                        // Cerrar el modal
+                        var modal = document.getElementById("editModal");
+                        modal.style.display = "none";
+                        // Aquí puedes refrescar la tabla o hacer algo más
+                        get_questionsall();
+                    } else {
+                        alert("Error al actualizar la pregunta.");
+                    }
+                },
+                error: function() {
+                    alert("Hubo un error al intentar actualizar la pregunta.");
+                }
+            });
         };
     </script>
     <script src="./public/js/required.js"></script>
